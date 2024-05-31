@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxl.job.executor.mapper.ExportTaskMapper">
+  <resultMap id="BaseResultMap" type="com.xxl.job.executor.entity.ExportTask">
+    <!--@mbg.generated-->
+    <!--@Table t_export_task-->
+    <id column="id" property="id" />
+    <result column="type" property="type" />
+    <result column="email" property="email" />
+    <result column="sql" property="sql" />
+    <result column="is_delete" property="isDelete" />
+    <result column="created" property="created" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `type`, email, `sql`, is_delete, created
+  </sql>
+</mapper>
