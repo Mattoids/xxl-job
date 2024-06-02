@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.io.Serializable;import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -13,11 +13,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName(value = "t_export_task")
-public class ExportTask extends Model {
-    public static final String COL_TYPE = "type";
-    public static final String COL_SQL = "sql";
-    private static final long serialVersionUID = 1L;
+@TableName(value = "t_export_task_sql")
+public class ExportTaskSql extends Model {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -28,16 +25,28 @@ public class ExportTask extends Model {
     private String code;
 
     /**
-     * 接收人邮箱
+     * 任务ID
      */
-    @TableField(value = "email")
-    private String email;
+    @TableField(value = "task_id")
+    private Integer taskId;
 
     /**
-     * 备注
+     * 导出类型 xslx xls csv
      */
-    @TableField(value = "remark")
-    private String remark;
+    @TableField(value = "`type`")
+    private String type;
+
+    /**
+     * 数据源
+     */
+    @TableField(value = "`source`")
+    private String source;
+
+    /**
+     * 导出语句
+     */
+    @TableField(value = "`sql`")
+    private String sql;
 
     /**
      * 是否删除 0-正常 1-删除
@@ -45,9 +54,6 @@ public class ExportTask extends Model {
     @TableField(value = "is_delete")
     private Integer isDelete;
 
-    /**
-     * 创建时间
-     */
     @TableField(value = "created")
     private LocalDateTime created;
 
@@ -55,16 +61,15 @@ public class ExportTask extends Model {
 
     public static final String COL_CODE = "code";
 
-    public static final String COL_EMAIL = "email";
+    public static final String COL_TASK_ID = "task_id";
 
-    public static final String COL_REMARK = "remark";
+    public static final String COL_TYPE = "type";
+
+    public static final String COL_SOURCE = "source";
+
+    public static final String COL_SQL = "sql";
 
     public static final String COL_IS_DELETE = "is_delete";
 
     public static final String COL_CREATED = "created";
-
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
 }
