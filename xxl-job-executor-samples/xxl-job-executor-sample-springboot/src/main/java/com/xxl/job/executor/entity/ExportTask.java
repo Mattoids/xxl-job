@@ -15,8 +15,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName(value = "t_export_task")
 public class ExportTask extends Model {
-    public static final String COL_TYPE = "type";
-    public static final String COL_SQL = "sql";
+    public static final String COL_REMARK = "remark";
     private static final long serialVersionUID = 1L;
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
@@ -34,10 +33,16 @@ public class ExportTask extends Model {
     private String email;
 
     /**
-     * 备注
+     * 要导出的sql
      */
-    @TableField(value = "remark")
-    private String remark;
+    @TableField(value = "`sql`")
+    private String sql;
+
+    /**
+     * 导出类型 excel csv
+     */
+    @TableField(value = "`type`")
+    private String type;
 
     /**
      * 是否删除 0-正常 1-删除
@@ -57,7 +62,9 @@ public class ExportTask extends Model {
 
     public static final String COL_EMAIL = "email";
 
-    public static final String COL_REMARK = "remark";
+    public static final String COL_SQL = "sql";
+
+    public static final String COL_TYPE = "type";
 
     public static final String COL_IS_DELETE = "is_delete";
 

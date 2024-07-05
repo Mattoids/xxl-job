@@ -1,10 +1,12 @@
 package com.xxl.job.executor.core.config.ssh;
 
 
+import cn.hutool.json.JSONUtil;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.xxl.job.core.ssh.SshTool;
 
+import java.util.Objects;
 import java.util.Properties;
 
 public class SshConnectionTool {
@@ -18,10 +20,9 @@ public class SshConnectionTool {
 
     public SshConnectionTool(SshTool model) throws Throwable
     {
-
         JSch jsch = new JSch();
 
-        if (model.getSshSecretKey()) {
+        if (Objects.nonNull(model.getSshPrivateKey()) && !model.getSshPrivateKey().isEmpty()) {
             jsch.setKnownHosts(model.getSshKnownHosts());
             //设置私钥
             jsch.addIdentity(model.getSshPrivateKey());
@@ -29,7 +30,7 @@ public class SshConnectionTool {
 
         sesion = jsch.getSession(model.getSshUser(), model.getSshHost(), model.getSshPort());
 
-        if (!model.getSshSecretKey()) {
+        if (Objects.nonNull(model.getSshPassword()) && !model.getSshPassword().isEmpty()) {
             sesion.setPassword(model.getSshPassword());
         }
 

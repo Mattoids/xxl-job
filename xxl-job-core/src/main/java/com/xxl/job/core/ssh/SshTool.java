@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class SshTool {
     private Boolean enabled = true;
-    private Boolean sshSecretKey = false;
 
     private String sshHost;
     private Integer sshPort = 22;
@@ -13,7 +12,7 @@ public class SshTool {
     private String sshPassword;
 
     private String sshKnownHosts = "~/.ssh/known_hosts";
-    private String sshPrivateKey = "~/.ssh/id_rsa";
+    private String sshPrivateKey;
 
     private String remoteMysqlHost;
     private Integer remoteMysqlPort = 3306;

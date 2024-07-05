@@ -7,12 +7,13 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sql" jdbcType="VARCHAR" property="sql" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="created" jdbcType="TIMESTAMP" property="created" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, code, email, remark, is_delete, created
+    id, code, email, `sql`, `type`, is_delete, created
   </sql>
 </mapper>
