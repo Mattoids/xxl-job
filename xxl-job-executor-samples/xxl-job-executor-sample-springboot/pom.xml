@@ -86,6 +86,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.sshd</groupId>
+            <artifactId>sshd-core</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.16</version>
@@ -116,5 +122,10 @@
         </plugins>
     </build>
 
-
+    <repositories>
+        <repository>
+            <id>j2ssh</id>
+            <url>http://artifactory.javassh.com/opensource-releases/</url>
+        </repository>
+    </repositories>
 </project>

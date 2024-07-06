@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Log4j2
 public class SshContextListener implements ServletContextListener {
 
-    private SshConnectionTool conexionssh;
+    private List<SshConnectionTool> conexionssh = new ArrayList<>();
 
     @Autowired
     private SshConfigurationProperties sshConfigurationProperties;
@@ -33,7 +35,7 @@ public class SshContextListener implements ServletContextListener {
                 continue;
             }
             try {
-                conexionssh = new SshConnectionTool(sshTool);
+                conexionssh.add(new SshConnectionTool(sshTool));
             } catch (Throwable e) {
                 e.printStackTrace(); // 连接失败
             }
@@ -46,8 +48,10 @@ public class SshContextListener implements ServletContextListener {
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
     public void contextDestroyed(ServletContextEvent arg0) {
+        for (SshConnectionTool sshConnectionTool : conexionssh) {
+            sshConnectionTool.closeSSH(); // 断开连接
+        }
         log.info("SSH Connection destroyed");
-        conexionssh.closeSSH(); // 断开连接
     }
 
 
